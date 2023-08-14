@@ -1,4 +1,4 @@
-SELECT * FROM departments;
+SELECT * FROM department;
 
-INSERT INTO departments (name)
+INSERT INTO department (name)
 VALUES (?);
