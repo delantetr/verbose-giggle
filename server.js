@@ -1,4 +1,6 @@
 const mysql = require('mysql2/promise');
+const inquirer = require('inquirer');
+const fs = require('fs').promises;
 
 // Connect to database
 const db = mysql.createConnection(
@@ -9,6 +11,16 @@ const db = mysql.createConnection(
     database: 'employees_db'
   },
 );
+
+async function executeQueryFromFile(filePath) {
+    try {
+      const query = await fs.readFile(filePath, 'utf-8');
+      const [rows] = await db.query(query);
+      return rows;
+    } catch (err) {
+      throw err;
+    }
+  };
 
 async function mainApp() {
     console.log('Welcome to the Employee Database Management System');
